@@ -1,0 +1,25 @@
+<ng-container *ngIf="flight">
+
+  <h1>Flight {{ flight.flightNumber }} {{ flight.date.seconds * 1000 | date:'yyyy-MM-dd' }}</h1>
+
+  <div style="overflow: auto">
+    <div style="width: 1560px;">
+      <!-- Row numbers -->
+      <div>
+        <div *ngFor="let row of rows" style="width: 40px; display: inline-block; text-align: center">
+          {{ row }}
+        </div>
+      </div>
+      <!-- Seats -->
+      <div *ngFor="let row of rows" style="width: 40px; display: inline-block;">
+        <div *ngFor="let letter of seatLetters">
+          <div [ngClass]="{booked: !!bookingsBySeat[row + letter]}" class="seat">
+          {{ row }}{{ letter }}
+          </div>
+          <div *ngIf="letter == 'C'" style="height: 10px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
